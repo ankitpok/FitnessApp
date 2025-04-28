@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class Viewworkouts extends StatelessWidget {
@@ -21,6 +20,16 @@ class Viewworkouts extends StatelessWidget {
                   return ListTile(
                     leading: CircleAvatar(child: Text('${index + 1}')),
                     title: Text('${snapshot.data?.docs[index]["dayType"]}'),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Exercise: ${snapshot.data?.docs[index]["exercise"]}',
+                        ),
+                        Text('Weight: ${snapshot.data?.docs[index]["reps"]}'),
+                        Text('Reps: ${snapshot.data?.docs[index]["weight"]}'),
+                      ],
+                    ),
                   );
                 },
               );

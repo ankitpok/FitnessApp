@@ -1,4 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fitness_app/auth/optscreen.dart';
+import 'package:fitness_app/auth/phoneauth.dart';
 import 'package:fitness_app/pages/exerciseentry.dart';
 import 'package:fitness_app/pages/homepage.dart';
 import 'package:fitness_app/pages/loginpage.dart';
@@ -22,9 +24,10 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(brightness: Brightness.dark),
       routes: {
         "/": (context) => HomePage(),
-        '/login': (context) => LogIn(),
+        '/login': (context) => PhoneAuth(),
         '/enterworkout': (context) => WorkoutEntry(),
         '/viewworkout': (context) => Viewworkouts(),
+        //'/otpscreen': (context) => OTPScreen(verificationid,),
       },
     );
   }

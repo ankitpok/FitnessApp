@@ -23,8 +23,6 @@ void addData(
           'reps': reps,
           'timestamp': FieldValue.serverTimestamp(),
         });
-
-    print('Data inserted with ID: $docId');
   } catch (e) {
     print('Error adding document: $e');
   }
