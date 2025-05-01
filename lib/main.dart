@@ -1,9 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fitness_app/auth/optscreen.dart';
 import 'package:fitness_app/auth/phoneauth.dart';
 import 'package:fitness_app/pages/exerciseentry.dart';
 import 'package:fitness_app/pages/homepage.dart';
-import 'package:fitness_app/pages/loginpage.dart';
 import 'package:fitness_app/pages/viewworkouts.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +24,7 @@ class MyApp extends StatelessWidget {
         "/": (context) => HomePage(),
         '/login': (context) => PhoneAuth(),
         '/enterworkout': (context) => WorkoutEntry(),
-        '/viewworkout': (context) => Viewworkouts(),
+        '/viewworkout': (context) => ViewWorkouts(),
         //'/otpscreen': (context) => OTPScreen(verificationid,),
       },
     );

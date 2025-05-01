@@ -1,29 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter/foundation.dart';
 
-void addData(
-  String dayType,
-  String exercise,
-  String weight,
-  String reps,
+Future<void> addWorkoutData(
+  String workoutType,
+  List<Map<String, dynamic>> exercises,
+  DateTime startTime,
+  DateTime endTime,
 ) async {
-  //final dateString = DateFormat('yyyy-MM-dd').format(DateTime.now());
-  final timestamp = DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now());
-
-  final docId = '${dayType.toLowerCase()}_$timestamp';
-
   try {
+    final docId = '${workoutType}_${startTime.millisecondsSinceEpoch}';
+
     await FirebaseFirestore.instance
-        .collection('Exercise Entry')
+        .collection('WorkoutSessions')
         .doc(docId)
         .set({
-          'dayType': dayType,
-          'exercise': exercise,
-          'weight': weight,
-          'reps': reps,
+          'workoutType': workoutType,
+          'exercises': exercises,
+          'startTime': startTime,
+          'endTime': endTime,
+          'durationInMinutes': endTime.difference(startTime).inMinutes,
           'timestamp': FieldValue.serverTimestamp(),
-        });
-  } catch (e) {
-    print('Error adding document: $e');
+        }, SetOptions(merge: true));
+
+    if (kDebugMode) {
+      print('Workout saved successfully with ID: $docId');
+    }
+  } catch (e, stack) {
+    if (kDebugMode) {
+      print('Error saving workout: $e');
+      print('Stack trace: $stack');
+    }
+    rethrow;
   }
 }

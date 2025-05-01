@@ -38,6 +38,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   firebase_auth: ^5.5.2
+  get: ^4.7.2
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +66,8 @@ flutter:
   assets:
     - lib\assets\Flux_Dev_A_highcontrast_illustration_of_a_stylized_dumbbell_or_1.jpg
     - lib\assets\Flux_Dev_Create_a_modern_minimalist_illustration_of_a_person_i_2.jpg
+    - lib\assets\exercise_entry.webp
+    - lib\assets\viewworkouts.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
