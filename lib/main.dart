@@ -4,6 +4,7 @@ import 'package:fitness_app/pages/exerciseentry.dart';
 import 'package:fitness_app/pages/homepage.dart';
 import 'package:fitness_app/pages/viewworkouts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.blue),
       darkTheme: ThemeData(brightness: Brightness.dark),

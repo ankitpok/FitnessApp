@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitness_app/pages/exerciseentry.dart';
+import 'package:fitness_app/pages/viewworkouts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -49,16 +52,18 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  child: Text(
-                    "Welcome ${user?.phoneNumber}",
-                    style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
-                  ),
+                Text(
+                  "Welcome ${user?.phoneNumber}",
+                  style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                 ),
                 InkWell(
-                  splashColor: Colors.red,
                   onTap: () {
-                    Navigator.pushNamed(context, '/enterworkout');
+                    Get.to(
+                      () => WorkoutEntry(),
+                      transition: Transition.circularReveal,
+                      duration: Duration(seconds: 1),
+                    );
+                    //Navigator.pushNamed(context, '/enterworkout');
                   },
                   child: Card(
                     margin: EdgeInsets.all(20),
@@ -135,7 +140,12 @@ class _HomePageState extends State<HomePage> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, '/viewworkout');
+                    Get.to(
+                      () => ViewWorkouts(),
+                      transition: Transition.fadeIn,
+                      duration: Duration(seconds: 1),
+                    );
+                    //Navigator.pushNamed(context, '/viewworkout');
                   },
                   child: Card(
                     margin: EdgeInsets.all(20),
@@ -211,7 +221,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                //TODO:Correct the exercise entry format by maintaining state across multiple exercise in same day
               ],
             ),
           ),
