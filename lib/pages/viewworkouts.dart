@@ -15,7 +15,7 @@ class ViewWorkouts extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromARGB(0, 0, 0, 0),
         foregroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Padding(

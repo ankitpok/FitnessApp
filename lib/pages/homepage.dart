@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/pages/exerciseentry.dart';
 import 'package:fitness_app/pages/viewworkouts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/route_manager.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,8 +21,21 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/login');
+            onPressed: () async {
+              final user = FirebaseAuth.instance.currentUser;
+
+              if (user != null) {
+                // User is signed in → Sign out
+                await FirebaseAuth.instance.signOut();
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text("Logged out")));
+                setState(() {});
+              } else {
+                // User is not signed in → Go to login screen
+                Navigator.pushNamed(context, '/login');
+                setState(() {});
+              }
             },
             icon: Icon(Icons.login_sharp),
           ),
@@ -31,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           'Homepage',
           style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
-        ),
+        ).animate().fadeIn(duration: 600.ms),
       ),
       body: Container(
         width: double.infinity,
@@ -52,10 +66,17 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "Welcome ${user?.phoneNumber}",
-                  style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
-                ),
+                user != null
+                    ? Text(
+                          "Welcome ${user.displayName}",
+                          style: TextStyle(
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                          ),
+                        )
+                        .animate()
+                        .fade(duration: 800.ms)
+                        .scale(delay: 20.ms, duration: 300.ms)
+                    : SizedBox(),
                 InkWell(
                   onTap: () {
                     Get.to(
